@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Apple,
@@ -195,6 +196,29 @@ function PhoneMockup({
 }
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) {
+      setMessage("Entre une adresse email valide.");
+      return;
+    }
+
+    const subject = encodeURIComponent("Nouvelle inscription FootMatch");
+    const body = encodeURIComponent(
+      `Bonjour,\n\nJe souhaite être informé du lancement de FootMatch.\n\nEmail : ${trimmedEmail}`
+    );
+
+    setMessage(
+      "Ta messagerie va s'ouvrir avec un email prérempli pour rejoindre la liste d'attente."
+    );
+    window.location.href = `mailto:contact@footmatch.io?subject=${subject}&body=${body}`;
+  }
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-pitch">
       <div className="noise" />
@@ -257,18 +281,9 @@ export default function Home() {
 
             <motion.form
               variants={fadeUp}
-              action="https://formsubmit.co/contact@footmatch.io"
-              method="POST"
+              onSubmit={handleSubmit}
               className="mt-9 flex w-full max-w-2xl flex-col gap-3 rounded-[1.75rem] border border-white/10 bg-white/[0.055] p-2 shadow-soft backdrop-blur-xl sm:flex-row"
             >
-              <input
-                type="hidden"
-                name="_subject"
-                value="Nouvelle inscription FootMatch"
-              />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="source" value="Landing page FootMatch" />
               <label className="sr-only" htmlFor="email">
                 Adresse email
               </label>
@@ -278,6 +293,8 @@ export default function Home() {
                 type="email"
                 required
                 placeholder="ton.email@exemple.com"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 className="h-14 min-w-0 flex-1 rounded-2xl border border-transparent bg-black/25 px-5 text-base text-white outline-none transition placeholder:text-white/35 focus:border-neon/45"
               />
               <button
@@ -288,6 +305,15 @@ export default function Home() {
                 <ArrowRight size={18} />
               </button>
             </motion.form>
+            {message && (
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-3 max-w-2xl text-sm text-neon"
+              >
+                {message}
+              </motion.p>
+            )}
 
             <motion.div
               variants={fadeUp}
