@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Apple,
@@ -196,59 +195,6 @@ function PhoneMockup({
 }
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">(
-    "idle"
-  );
-  const [message, setMessage] = useState("");
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setFormState("loading");
-    setMessage("");
-
-    try {
-      const formData = new FormData();
-      formData.append("email", email);
-      formData.append("_subject", "Nouvelle inscription FootMatch");
-      formData.append("_captcha", "false");
-      formData.append("source", "Landing page FootMatch");
-
-      const response = await fetch("https://formsubmit.co/ajax/contact@footmatch.io", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json"
-        }
-      });
-      const rawResponse = await response.text();
-      let data: { message?: string } = {};
-
-      if (rawResponse) {
-        try {
-          data = JSON.parse(rawResponse) as { message?: string };
-        } catch {
-          throw new Error("Le serveur n'a pas renvoyé une réponse valide.");
-        }
-      }
-
-      if (!response.ok) {
-        throw new Error(data.message || "Une erreur est survenue.");
-      }
-
-      setFormState("success");
-      setMessage(data.message || "Merci, ton email a bien été pris en compte.");
-      setEmail("");
-    } catch (error) {
-      setFormState("error");
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : "Impossible d'enregistrer ton email pour le moment."
-      );
-    }
-  }
-
   return (
     <main className="relative min-h-screen overflow-hidden bg-pitch">
       <div className="noise" />
@@ -311,9 +257,18 @@ export default function Home() {
 
             <motion.form
               variants={fadeUp}
-              onSubmit={handleSubmit}
+              action="https://formsubmit.co/contact@footmatch.io"
+              method="POST"
               className="mt-9 flex w-full max-w-2xl flex-col gap-3 rounded-[1.75rem] border border-white/10 bg-white/[0.055] p-2 shadow-soft backdrop-blur-xl sm:flex-row"
             >
+              <input
+                type="hidden"
+                name="_subject"
+                value="Nouvelle inscription FootMatch"
+              />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="source" value="Landing page FootMatch" />
               <label className="sr-only" htmlFor="email">
                 Adresse email
               </label>
@@ -323,32 +278,16 @@ export default function Home() {
                 type="email"
                 required
                 placeholder="ton.email@exemple.com"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
                 className="h-14 min-w-0 flex-1 rounded-2xl border border-transparent bg-black/25 px-5 text-base text-white outline-none transition placeholder:text-white/35 focus:border-neon/45"
               />
               <button
                 type="submit"
-                disabled={formState === "loading"}
                 className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-neon px-5 text-sm font-black text-[#041007] shadow-glow transition hover:-translate-y-0.5 hover:bg-mint sm:px-6"
               >
-                {formState === "loading"
-                  ? "Inscription..."
-                  : "Être informé du lancement"}
+                Être informé du lancement
                 <ArrowRight size={18} />
               </button>
             </motion.form>
-            {message && (
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`mt-3 max-w-2xl text-sm ${
-                  formState === "success" ? "text-neon" : "text-red-300"
-                }`}
-              >
-                {message}
-              </motion.p>
-            )}
 
             <motion.div
               variants={fadeUp}
