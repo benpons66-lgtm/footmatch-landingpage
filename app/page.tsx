@@ -47,12 +47,6 @@ const matchCards = [
   }
 ];
 
-const stats = [
-  ["128+", "matchs créés"],
-  ["940+", "joueurs inscrits"],
-  ["18", "villes actives"]
-];
-
 function StoreBadge({
   type,
   label,
@@ -392,7 +386,7 @@ export default function Home() {
 
       <section className="relative z-10 px-5 py-16 sm:px-8 lg:px-10">
         <div className="premium-border mx-auto max-w-7xl overflow-hidden rounded-[2rem] p-6 sm:p-8 lg:p-10">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
             <div>
               <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-neon/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-neon">
                 <ShieldCheck size={14} />
@@ -401,19 +395,37 @@ export default function Home() {
               <h2 className="font-display text-3xl font-black leading-tight text-white sm:text-5xl">
                 Déjà des joueurs prêts à rejoindre la communauté FootMatch.
               </h2>
+              <p className="mt-5 max-w-2xl text-base leading-7 text-white/62">
+                La communauté se construit avant le lancement. Inscris-toi pour
+                recevoir l'accès en priorité et faire partie des premiers joueurs
+                à organiser leurs matchs sur FootMatch.
+              </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {stats.map(([number, label]) => (
-                <div
-                  key={label}
-                  className="rounded-[1.4rem] border border-neon/18 bg-black/28 p-5"
-                >
-                  <p className="font-display text-4xl font-black text-neon">
-                    {number}
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-white/60">{label}</p>
+            <div className="rounded-[1.6rem] border border-neon/18 bg-black/28 p-5 sm:p-6">
+              <div className="mb-5 flex items-center gap-3">
+                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-neon/12 text-neon">
+                  <Users size={22} />
                 </div>
-              ))}
+                <div>
+                  <p className="text-sm font-bold text-white">Liste d'attente</p>
+                  <p className="text-sm text-white/52">Ouverture prochaine</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  "Accès prioritaire au lancement",
+                  "Premières villes activées avec la communauté",
+                  "Invitations pour les joueurs motivés"
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.045] px-4 py-3 text-sm text-white/72"
+                  >
+                    <Check size={16} className="shrink-0 text-neon" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
