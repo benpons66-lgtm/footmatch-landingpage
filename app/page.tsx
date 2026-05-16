@@ -204,7 +204,7 @@ export default function Home() {
       <section className="relative z-10 px-5 pb-20 pt-5 sm:px-8 lg:px-10">
         <nav className="mx-auto flex max-w-7xl items-center justify-between py-5">
           <Image
-            src="/brand/logo-footmatch.png"
+            src="/brand/logo-footmatch-transparent.png"
             alt="FootMatch"
             width={186}
             height={85}
@@ -435,7 +435,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
           <div>
             <Image
-              src="/brand/logo-footmatch.png"
+              src="/brand/logo-footmatch-transparent.png"
               alt="FootMatch"
               width={150}
               height={68}

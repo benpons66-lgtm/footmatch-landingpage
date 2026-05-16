@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "FootMatch",
     images: [
       {
-        url: "/brand/logo-footmatch.png",
+        url: "/brand/logo-footmatch-transparent.png",
         width: 1860,
         height: 846,
         alt: "Logo FootMatch"
