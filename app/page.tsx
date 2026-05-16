@@ -202,14 +202,14 @@ export default function Home() {
       <div className="pointer-events-none absolute left-1/2 top-0 h-[520px] w-[min(920px,92vw)] -translate-x-1/2 rounded-full bg-neon/10 blur-[110px]" />
 
       <section className="relative z-10 px-5 pb-20 pt-5 sm:px-8 lg:px-10">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between py-3">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between py-5">
           <Image
             src="/brand/logo-footmatch.png"
             alt="FootMatch"
             width={186}
             height={85}
             priority
-            className="h-auto w-36 sm:w-44"
+            className="h-auto w-48 sm:w-60 lg:w-72"
           />
           <a
             href="mailto:contact@footmatch.io"
