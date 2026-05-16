@@ -1,0 +1,21 @@
+<svg width="1800" height="420" viewBox="0 0 1800 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1800" height="420" rx="64" fill="#020806"/>
+  <g transform="translate(84 58) scale(.29)">
+    <rect width="1024" height="1024" rx="224" fill="#06140D"/>
+    <rect x="126" y="126" width="772" height="772" rx="158" stroke="#00E676" stroke-opacity=".28" stroke-width="8"/>
+    <path d="M276 284h336c55 0 100 45 100 100s-45 100-100 100H392v252" stroke="#00E676" stroke-width="92" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M392 512h280" stroke="#00E676" stroke-width="92" stroke-linecap="round"/>
+    <path d="M652 268l-110 222h142L528 756l46-218H450l202-270Z" fill="#FFC83D"/>
+    <circle cx="694" cy="342" r="120" fill="#F4F8F1"/>
+    <path d="M694 254l55 40-21 65h-68l-21-65 55-40Z" fill="#141816"/>
+    <path d="M612 333l48 26-12 53-58-5-22-51 44-23Z" fill="#303633"/>
+    <path d="M776 333l-48 26 12 53 58-5 22-51-44-23Z" fill="#303633"/>
+    <path d="M660 412h68l34 45-36 48h-64l-36-48 34-45Z" fill="#252B28"/>
+    <circle cx="694" cy="342" r="120" stroke="#101714" stroke-width="14"/>
+    <path d="M272 286h190" stroke="#EAF1E8" stroke-opacity=".95" stroke-width="38" stroke-linecap="round"/>
+    <path d="M282 512h110" stroke="#EAF1E8" stroke-opacity=".95" stroke-width="38" stroke-linecap="round"/>
+  </g>
+  <text x="430" y="255" fill="#F4F8F1" font-family="Arial Black, Arial, sans-serif" font-size="132" font-weight="900" letter-spacing="0">Foot</text>
+  <text x="777" y="255" fill="#00E676" font-family="Arial Black, Arial, sans-serif" font-size="132" font-weight="900" letter-spacing="0">Match</text>
+  <text x="438" y="320" fill="#87A093" font-family="Arial, sans-serif" font-size="38" font-weight="700" letter-spacing="9">ORGANISE · REJOINS · JOUE</text>
+</svg>

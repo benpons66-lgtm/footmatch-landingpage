@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "FootMatch",
+    "slug": "footmatch",
+    "icon": "./brand/png/store/app-store-icon-1024.png",
+    "splash": {
+      "image": "./brand/png/store/footmatch-splash-1290x2796.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#020806"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./brand/png/store/play-store-icon-512.png",
+        "backgroundColor": "#020806"
+      }
+    }
+  }
+}
