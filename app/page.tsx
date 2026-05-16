@@ -94,15 +94,14 @@ function PhoneMockup({
         <div className="field-lines absolute inset-0 opacity-25" />
         <div className="relative min-h-[472px] p-4">
           <div className="mb-7 flex items-center justify-between pt-4">
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 items-center">
               <Image
-                src="/brand/app-icon.png"
+                src="/brand/logo-footmatch-transparent.png"
                 alt=""
-                width={28}
-                height={28}
-                className="rounded-lg"
+                width={118}
+                height={54}
+                className="h-auto w-[104px]"
               />
-              <span className="text-xs font-bold text-white">FootMatch</span>
             </div>
             <Bell size={16} className="text-neon" />
           </div>
