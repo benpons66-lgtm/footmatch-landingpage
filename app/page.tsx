@@ -215,14 +215,23 @@ export default function Home() {
         },
         body: JSON.stringify({ email })
       });
-      const data = (await response.json()) as { message?: string };
+      const rawResponse = await response.text();
+      let data: { message?: string } = {};
+
+      if (rawResponse) {
+        try {
+          data = JSON.parse(rawResponse) as { message?: string };
+        } catch {
+          throw new Error("Le serveur n'a pas renvoyé une réponse valide.");
+        }
+      }
 
       if (!response.ok) {
         throw new Error(data.message || "Une erreur est survenue.");
       }
 
       setFormState("success");
-      setMessage(data.message || "Merci, tu es bien inscrit sur la liste d'attente.");
+      setMessage(data.message || "Merci, ton email a bien été pris en compte.");
       setEmail("");
     } catch (error) {
       setFormState("error");
@@ -284,8 +293,8 @@ export default function Home() {
               variants={fadeUp}
               className="mt-7 max-w-2xl text-lg leading-8 text-white/72 sm:text-xl"
             >
-              L'application qui permet aux joueurs amateurs de créer ou rejoindre
-              un match facilement.
+              L'application qui permet aux joueurs loisirs de créer ou rejoindre
+              un match en 30 secondes.
             </motion.p>
 
             <motion.form
@@ -389,12 +398,12 @@ export default function Home() {
                 Apercu application
               </p>
               <h2 className="font-display text-4xl font-black text-white sm:text-5xl">
-                Toute l'organisation, dans la poche.
+                Organise vite. Joue gratuitement.
               </h2>
             </div>
             <p className="max-w-md text-base leading-7 text-white/62">
-              Crée un match, trouve les joueurs manquants et garde la discussion
-              au même endroit.
+              Crée ton match en quelques secondes, partage-le à ton équipe et
+              trouve le joueur manquant à la dernière minute.
             </p>
           </div>
 

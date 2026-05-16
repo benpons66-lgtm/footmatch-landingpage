@@ -1,27 +1,29 @@
 <?php
+declare(strict_types=1);
+
 header('Content-Type: application/json; charset=utf-8');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  http_response_code(405);
-  echo json_encode(['message' => 'Méthode non autorisée.']);
+function respond(int $status, string $message): void {
+  http_response_code($status);
+  echo json_encode(['message' => $message], JSON_UNESCAPED_UNICODE);
   exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  respond(405, 'Méthode non autorisée.');
 }
 
 $raw = file_get_contents('php://input');
 $data = json_decode($raw, true);
-$email = trim($data['email'] ?? $_POST['email'] ?? '');
+$email = trim((string)($data['email'] ?? $_POST['email'] ?? ''));
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  http_response_code(422);
-  echo json_encode(['message' => 'Entre une adresse email valide.']);
-  exit;
+  respond(422, 'Entre une adresse email valide.');
 }
 
-$storageDir = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'footmatch-data';
+$storageDir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'footmatch-data';
 if (!is_dir($storageDir) && !mkdir($storageDir, 0755, true)) {
-  http_response_code(500);
-  echo json_encode(['message' => 'Impossible de préparer la liste d’attente.']);
-  exit;
+  respond(500, 'Impossible de préparer la liste d’attente.');
 }
 
 $file = $storageDir . DIRECTORY_SEPARATOR . 'waitlist.csv';
@@ -33,9 +35,7 @@ $line = sprintf(
 );
 
 if (file_put_contents($file, $line, FILE_APPEND | LOCK_EX) === false) {
-  http_response_code(500);
-  echo json_encode(['message' => 'Impossible d’enregistrer ton email pour le moment.']);
-  exit;
+  respond(500, 'Impossible d’enregistrer ton email pour le moment.');
 }
 
-echo json_encode(['message' => 'Merci, tu es bien inscrit sur la liste d’attente.']);
+respond(200, 'Merci, ton email a bien été pris en compte.');
