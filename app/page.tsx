@@ -398,12 +398,12 @@ export default function Home() {
                 Apercu application
               </p>
               <h2 className="font-display text-4xl font-black text-white sm:text-5xl">
-                Organise vite. Joue gratuitement.
+                Toute l'organisation, dans la poche.
               </h2>
             </div>
             <p className="max-w-md text-base leading-7 text-white/62">
-              Crée ton match en quelques secondes, partage-le à ton équipe et
-              trouve le joueur manquant à la dernière minute.
+              Crée un match, trouve les joueurs manquants et garde la discussion
+              au même endroit.
             </p>
           </div>
 
@@ -514,6 +514,9 @@ export default function Home() {
                 footmatch.io
               </a>
             </div>
+            <p className="mt-3 text-xs text-white/38">
+              © 2026 FootMatch. Tous droits réservés.
+            </p>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/50">
             <a href="/politique-confidentialite" className="hover:text-neon">
