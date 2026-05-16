@@ -208,12 +208,18 @@ export default function Home() {
     setMessage("");
 
     try {
-      const response = await fetch("/api/subscribe.php", {
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("_subject", "Nouvelle inscription FootMatch");
+      formData.append("_captcha", "false");
+      formData.append("source", "Landing page FootMatch");
+
+      const response = await fetch("https://formsubmit.co/ajax/contact@footmatch.io", {
         method: "POST",
+        body: formData,
         headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email })
+          Accept: "application/json"
+        }
       });
       const rawResponse = await response.text();
       let data: { message?: string } = {};
@@ -295,6 +301,12 @@ export default function Home() {
             >
               L'application qui permet aux joueurs loisirs de créer ou rejoindre
               un match en 30 secondes.
+            </motion.p>
+            <motion.p
+              variants={fadeUp}
+              className="mt-3 inline-flex rounded-full border border-neon/18 bg-neon/8 px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-neon"
+            >
+              100% gratuit
             </motion.p>
 
             <motion.form
@@ -515,7 +527,7 @@ export default function Home() {
               </a>
             </div>
             <p className="mt-3 text-xs text-white/38">
-              © 2026 FootMatch. Tous droits réservés.
+              © 2026 FootMatch™. Tous droits réservés.
             </p>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/50">
