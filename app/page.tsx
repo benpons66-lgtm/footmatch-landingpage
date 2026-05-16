@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Apple,
@@ -195,6 +196,44 @@ function PhoneMockup({
 }
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setFormState("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/subscribe.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+      });
+      const data = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(data.message || "Une erreur est survenue.");
+      }
+
+      setFormState("success");
+      setMessage(data.message || "Merci, tu es bien inscrit sur la liste d'attente.");
+      setEmail("");
+    } catch (error) {
+      setFormState("error");
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "Impossible d'enregistrer ton email pour le moment."
+      );
+    }
+  }
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-pitch">
       <div className="noise" />
@@ -211,7 +250,7 @@ export default function Home() {
             className="h-auto w-48 sm:w-60 lg:w-72"
           />
           <a
-            href="mailto:contact@footmatch.io"
+            href="/contact"
             className="hidden rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-white/80 transition hover:border-neon/40 hover:text-white sm:inline-flex"
           >
             Contact
@@ -251,6 +290,7 @@ export default function Home() {
 
             <motion.form
               variants={fadeUp}
+              onSubmit={handleSubmit}
               className="mt-9 flex w-full max-w-2xl flex-col gap-3 rounded-[1.75rem] border border-white/10 bg-white/[0.055] p-2 shadow-soft backdrop-blur-xl sm:flex-row"
             >
               <label className="sr-only" htmlFor="email">
@@ -258,19 +298,36 @@ export default function Home() {
               </label>
               <input
                 id="email"
+                name="email"
                 type="email"
                 required
                 placeholder="ton.email@exemple.com"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 className="h-14 min-w-0 flex-1 rounded-2xl border border-transparent bg-black/25 px-5 text-base text-white outline-none transition placeholder:text-white/35 focus:border-neon/45"
               />
               <button
                 type="submit"
+                disabled={formState === "loading"}
                 className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-neon px-5 text-sm font-black text-[#041007] shadow-glow transition hover:-translate-y-0.5 hover:bg-mint sm:px-6"
               >
-                Être informé du lancement
+                {formState === "loading"
+                  ? "Inscription..."
+                  : "Être informé du lancement"}
                 <ArrowRight size={18} />
               </button>
             </motion.form>
+            {message && (
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mt-3 max-w-2xl text-sm ${
+                  formState === "success" ? "text-neon" : "text-red-300"
+                }`}
+              >
+                {message}
+              </motion.p>
+            )}
 
             <motion.div
               variants={fadeUp}
@@ -450,10 +507,10 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/50">
-            <a href="#" className="hover:text-neon">
+            <a href="/politique-confidentialite" className="hover:text-neon">
               Politique de confidentialité
             </a>
-            <a href="#" className="hover:text-neon">
+            <a href="/conditions-utilisation" className="hover:text-neon">
               Conditions d'utilisation
             </a>
           </div>
