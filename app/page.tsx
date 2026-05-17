@@ -330,6 +330,13 @@ export default function Home() {
                 <ArrowRight size={18} />
               </button>
             </motion.form>
+            <motion.p
+              variants={fadeUp}
+              className="mt-3 max-w-2xl text-xs leading-5 text-white/42"
+            >
+              En t'inscrivant, tu acceptes d'être contacté concernant le
+              lancement de FootMatch.
+            </motion.p>
             {message && (
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
