@@ -27,7 +27,7 @@ const fadeUp = {
 
 const matchCards = [
   {
-    title: "Fini les groupes WhatsApp désorganisés",
+    title: "Fini les groupes WhatsApp et Facebook désorganisés",
     text: "Un seul endroit pour les dispos, les confirmations et les infos du match.",
     icon: MessageCircle
   },
@@ -197,9 +197,12 @@ function PhoneMockup({
 
 export default function Home() {
   const [email, setEmail] = useState("");
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
   const [message, setMessage] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const trimmedEmail = email.trim();
@@ -208,15 +211,34 @@ export default function Home() {
       return;
     }
 
-    const subject = encodeURIComponent("Nouvelle inscription FootMatch");
-    const body = encodeURIComponent(
-      `Bonjour,\n\nJe souhaite être informé du lancement de FootMatch.\n\nEmail : ${trimmedEmail}`
-    );
+    setFormState("loading");
+    setMessage("");
 
-    setMessage(
-      "Ta messagerie va s'ouvrir avec un email prérempli pour rejoindre la liste d'attente."
-    );
-    window.location.href = `mailto:contact@footmatch.io?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: trimmedEmail })
+      });
+      const data = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(data.message || "Une erreur est survenue.");
+      }
+
+      setEmail("");
+      setFormState("success");
+      setMessage(data.message || "Merci, ton email a bien été pris en compte.");
+    } catch (error) {
+      setFormState("error");
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "Impossible d'envoyer ton email pour le moment."
+      );
+    }
   }
 
   return (
@@ -236,7 +258,7 @@ export default function Home() {
           />
           <a
             href="/contact"
-            className="hidden rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-white/80 transition hover:border-neon/40 hover:text-white sm:inline-flex"
+            className="inline-flex rounded-full border border-white/10 px-3 py-2 text-xs font-medium text-white/80 transition hover:border-neon/40 hover:text-white sm:px-4 sm:text-sm"
           >
             Contact
           </a>
@@ -269,8 +291,8 @@ export default function Home() {
               variants={fadeUp}
               className="mt-7 max-w-2xl text-lg leading-8 text-white/72 sm:text-xl"
             >
-              L'application qui permet aux joueurs loisirs de créer ou rejoindre
-              un match en 30 secondes.
+              L'application qui connecte les joueurs et simplifie l'organisation
+              des matchs.
             </motion.p>
             <motion.p
               variants={fadeUp}
@@ -299,9 +321,12 @@ export default function Home() {
               />
               <button
                 type="submit"
+                disabled={formState === "loading"}
                 className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-neon px-5 text-sm font-black text-[#041007] shadow-glow transition hover:-translate-y-0.5 hover:bg-mint sm:px-6"
               >
-                Être informé du lancement
+                {formState === "loading"
+                  ? "Inscription..."
+                  : "Être informé du lancement"}
                 <ArrowRight size={18} />
               </button>
             </motion.form>
@@ -309,7 +334,9 @@ export default function Home() {
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-3 max-w-2xl text-sm text-neon"
+                className={`mt-3 max-w-2xl text-sm ${
+                  formState === "error" ? "text-red-300" : "text-neon"
+                }`}
               >
                 {message}
               </motion.p>
@@ -375,12 +402,12 @@ export default function Home() {
                 Apercu application
               </p>
               <h2 className="font-display text-4xl font-black text-white sm:text-5xl">
-                Toute l'organisation, dans la poche.
+                Organiser un match n'a jamais été aussi simple.
               </h2>
             </div>
             <p className="max-w-md text-base leading-7 text-white/62">
-              Crée un match, trouve les joueurs manquants et garde la discussion
-              au même endroit.
+              Crée un match, trouve des joueurs ou rejoins une partie. Toute
+              l'organisation au même endroit.
             </p>
           </div>
 
@@ -435,12 +462,20 @@ export default function Home() {
                 Communauté
               </div>
               <h2 className="font-display text-3xl font-black leading-tight text-white sm:text-5xl">
-                Déjà des joueurs prêts à rejoindre la communauté FootMatch.
+                Rejoins les premiers joueurs FootMatch.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-white/62">
-                La communauté se construit avant le lancement. Inscris-toi pour
-                recevoir l'accès en priorité et faire partie des premiers joueurs
-                à organiser leurs matchs sur FootMatch.
+                FootMatch arrive bientôt sur l'App Store et Google Play.
+              </p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/62">
+                Inscris-toi pour être prévenu du lancement officiel, accéder à
+                l'application en avant-première et suivre les prochaines
+                évolutions de FootMatch.
+              </p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/62">
+                Une Version 2 est déjà en préparation avec de nouvelles
+                fonctionnalités pour simplifier encore davantage l'organisation
+                des matchs amateurs.
               </p>
             </div>
             <div className="rounded-[1.6rem] border border-neon/18 bg-black/28 p-5 sm:p-6">
@@ -455,9 +490,10 @@ export default function Home() {
               </div>
               <div className="space-y-3">
                 {[
-                  "Accès prioritaire au lancement",
-                  "Premières villes activées avec la communauté",
-                  "Invitations pour les joueurs motivés"
+                  "Disponible sur iPhone et Android",
+                  "Prévenu avant la sortie officielle",
+                  "Accès anticipé aux futures évolutions",
+                  "Version 2 déjà en préparation"
                 ].map((item) => (
                   <div
                     key={item}
