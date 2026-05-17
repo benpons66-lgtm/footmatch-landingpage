@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -17,41 +16,35 @@ export async function POST(request: Request) {
       );
     }
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = Number(process.env.SMTP_PORT || 465);
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const notifyTo = process.env.NOTIFY_TO || smtpUser || "contact@footmatch.io";
+    const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT;
 
-    if (!smtpHost || !smtpUser || !smtpPass) {
+    if (!formspreeEndpoint) {
       return NextResponse.json(
         { message: "Le formulaire n'est pas encore configuré côté serveur." },
         { status: 500 }
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass
-      }
+    const formspreeResponse = await fetch(formspreeEndpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: cleanEmail,
+        subject: "Nouvelle inscription FootMatch",
+        source: "Landing page FootMatch",
+        submittedAt: new Date().toISOString()
+      })
     });
 
-    await transporter.sendMail({
-      from: `"FootMatch" <${smtpUser}>`,
-      to: notifyTo,
-      replyTo: cleanEmail,
-      subject: "Nouvelle inscription FootMatch",
-      text: [
-        "Nouvelle inscription à la liste d'attente FootMatch.",
-        "",
-        `Email : ${cleanEmail}`,
-        `Date : ${new Date().toISOString()}`
-      ].join("\n")
-    });
+    if (!formspreeResponse.ok) {
+      return NextResponse.json(
+        { message: "Impossible d'envoyer l'inscription pour le moment." },
+        { status: 502 }
+      );
+    }
 
     return NextResponse.json({
       message: "Merci, ton email a bien été pris en compte."
