@@ -11,6 +11,7 @@ import {
   Check,
   ChevronRight,
   CircleDot,
+  Instagram,
   MapPin,
   MessageCircle,
   Play,
@@ -538,13 +539,35 @@ export default function Home() {
               © 2026 FootMatch™. Tous droits réservés.
             </p>
           </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/50">
-            <a href="/politique-confidentialite" className="hover:text-neon">
-              Politique de confidentialité
-            </a>
-            <a href="/conditions-utilisation" className="hover:text-neon">
-              Conditions d'utilisation
-            </a>
+          <div className="flex flex-col gap-5 md:items-end">
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://www.instagram.com/footmatch.io/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 text-sm font-semibold text-white/78 transition hover:-translate-y-0.5 hover:border-neon/35 hover:text-neon"
+              >
+                <Instagram size={17} />
+                Instagram
+              </a>
+              <a
+                href="https://www.tiktok.com/@footmatch.io"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 text-sm font-semibold text-white/78 transition hover:-translate-y-0.5 hover:border-neon/35 hover:text-neon"
+              >
+                <span className="text-base font-black">♪</span>
+                TikTok
+              </a>
+            </div>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/50 md:justify-end">
+              <a href="/politique-confidentialite" className="hover:text-neon">
+                Politique de confidentialité
+              </a>
+              <a href="/conditions-utilisation" className="hover:text-neon">
+                Conditions d'utilisation
+              </a>
+            </div>
           </div>
         </div>
       </footer>
