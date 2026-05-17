@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     ],
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png"
+  },
+  verification: {
+    google: "YYd2tzAz967H8W-YIwRRN1aCbpodJ13Kz13iZtStkGg"
   }
 };
 
