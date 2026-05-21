@@ -51,7 +51,11 @@ function StoreBadge({
   icon: React.ReactNode;
 }) {
   return (
-    <button className="store-badge flex h-14 min-w-[168px] items-center gap-3 rounded-2xl px-4 text-left">
+    <button
+      type="button"
+      aria-label={label}
+      className="store-badge flex h-14 min-w-[168px] items-center gap-3 rounded-2xl px-4 text-left"
+    >
       <span className="text-white">{icon}</span>
       <span>
         <span className="block text-[11px] uppercase tracking-[0.18em] text-ash">
@@ -303,7 +307,7 @@ export default function Home() {
                 Organiser un match n'a jamais été aussi simple.
               </h2>
             </div>
-            <p className="max-w-md text-base leading-7 text-white/62">
+              <p className="max-w-md text-base leading-7 text-white/75">
               Crée un match, trouve des joueurs ou rejoins une partie. Toute
               l'organisation au même endroit.
             </p>
@@ -333,7 +337,7 @@ export default function Home() {
                   <h3 className="text-xl font-black leading-tight text-white">
                     {card.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-6 text-white/58">{card.text}</p>
+                  <p className="mt-4 text-sm leading-6 text-white/70">{card.text}</p>
                 </article>
               );
             })}
@@ -352,15 +356,15 @@ export default function Home() {
               <h2 className="font-display text-3xl font-black leading-tight text-white sm:text-5xl">
                 Rejoins les premiers joueurs FootMatch.
               </h2>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-white/62">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-white/75">
                 FootMatch arrive bientôt sur l'App Store et Google Play.
               </p>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-white/62">
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">
                 Inscris-toi pour être prévenu du lancement officiel, accéder à
                 l'application en avant-première et suivre les prochaines
                 évolutions de FootMatch.
               </p>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-white/62">
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">
                 Une Version 2 est déjà en préparation avec de nouvelles
                 fonctionnalités pour simplifier encore davantage l'organisation
                 des matchs amateurs.
@@ -373,7 +377,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-white">Liste d'attente</p>
-                  <p className="text-sm text-white/52">Ouverture prochaine</p>
+                  <p className="text-sm text-white/70">Ouverture prochaine</p>
                 </div>
               </div>
               <div className="space-y-3">
@@ -407,7 +411,7 @@ export default function Home() {
               height={68}
               className="h-auto w-32"
             />
-            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/56">
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/70">
               <a href="mailto:contact@footmatch.io" className="hover:text-neon">
                 contact@footmatch.io
               </a>
@@ -415,7 +419,7 @@ export default function Home() {
                 footmatch.io
               </a>
             </div>
-            <p className="mt-3 text-xs text-white/38">
+            <p className="mt-3 text-xs text-white/60">
               © 2026 FootMatch™. Tous droits réservés.
             </p>
           </div>
@@ -440,7 +444,7 @@ export default function Home() {
                 TikTok
               </a>
             </div>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/50 md:justify-end">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70 md:justify-end">
               <a href="/politique-confidentialite" className="hover:text-neon">
                 Politique de confidentialité
               </a>

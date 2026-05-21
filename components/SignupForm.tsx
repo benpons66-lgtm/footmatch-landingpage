@@ -67,7 +67,7 @@ export function SignupForm() {
           placeholder="ton.email@exemple.com"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="h-14 min-w-0 flex-1 rounded-2xl border border-transparent bg-black/25 px-5 text-base text-white outline-none transition placeholder:text-white/35 focus:border-neon/45"
+          className="h-14 min-w-0 flex-1 rounded-2xl border border-transparent bg-black/25 px-5 text-base text-white outline-none transition placeholder:text-white/55 focus:border-neon/45"
         />
         <button
           type="submit"
@@ -78,7 +78,7 @@ export function SignupForm() {
           <ArrowRight size={18} />
         </button>
       </form>
-      <p className="mt-3 max-w-2xl text-xs leading-5 text-white/42">
+      <p className="mt-3 max-w-2xl text-xs leading-5 text-white/60">
         En t'inscrivant, tu acceptes d'être contacté concernant le lancement de
         FootMatch.
       </p>
