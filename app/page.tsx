@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { FormEvent, useState } from "react";
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m as motion } from "framer-motion";
 import {
   Apple,
   ArrowRight,
@@ -243,6 +243,7 @@ export default function Home() {
   }
 
   return (
+    <LazyMotion features={domAnimation}>
     <main className="relative min-h-screen overflow-hidden bg-pitch">
       <div className="noise" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-[520px] w-[min(920px,92vw)] -translate-x-1/2 rounded-full bg-neon/10 blur-[110px]" />
@@ -572,5 +573,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </LazyMotion>
   );
 }

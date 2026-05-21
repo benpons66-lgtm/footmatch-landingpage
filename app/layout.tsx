@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png", sizes: "512x512" }
+      { url: "/favicon.png", type: "image/png", sizes: "192x192" }
     ],
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png"
@@ -60,9 +60,9 @@ export default function RootLayout({
       <body>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-3W2TJF70ZE"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
