@@ -1,11 +1,6 @@
-"use client";
-
 import Image from "next/image";
-import { FormEvent, useState } from "react";
-import { LazyMotion, domAnimation, m as motion } from "framer-motion";
 import {
   Apple,
-  ArrowRight,
   Bell,
   CalendarPlus,
   Check,
@@ -20,11 +15,8 @@ import {
   Users,
   Zap
 } from "lucide-react";
+import { SignupForm } from "../components/SignupForm";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0 }
-};
 
 const matchCards = [
   {
@@ -87,8 +79,7 @@ function PhoneMockup({
   const isJoin = variant === "join";
 
   return (
-    <motion.div
-      variants={fadeUp}
+    <div
       className={`relative mx-auto w-[248px] rounded-[2.3rem] border border-white/12 bg-[#070b09] p-3 shadow-soft ${className}`}
     >
       <div className="absolute left-1/2 top-3 z-10 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-black" />
@@ -192,58 +183,12 @@ function PhoneMockup({
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">(
-    "idle"
-  );
-  const [message, setMessage] = useState("");
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const trimmedEmail = email.trim();
-    if (!trimmedEmail) {
-      setMessage("Entre une adresse email valide.");
-      return;
-    }
-
-    setFormState("loading");
-    setMessage("");
-
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email: trimmedEmail })
-      });
-      const data = (await response.json()) as { message?: string };
-
-      if (!response.ok) {
-        throw new Error(data.message || "Une erreur est survenue.");
-      }
-
-      setEmail("");
-      setFormState("success");
-      setMessage(data.message || "Merci, ton email a bien été pris en compte.");
-    } catch (error) {
-      setFormState("error");
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : "Impossible d'envoyer ton email pour le moment."
-      );
-    }
-  }
-
   return (
-    <LazyMotion features={domAnimation}>
     <main className="relative min-h-screen overflow-hidden bg-pitch">
       <div className="noise" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-[520px] w-[min(920px,92vw)] -translate-x-1/2 rounded-full bg-neon/10 blur-[110px]" />
@@ -267,93 +212,40 @@ export default function Home() {
         </nav>
 
         <div className="mx-auto grid max-w-7xl items-center gap-12 pt-14 lg:grid-cols-[1fr_0.92fr] lg:gap-6 lg:pt-20">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            transition={{ staggerChildren: 0.08 }}
-            className="max-w-3xl"
-          >
-            <motion.div
-              variants={fadeUp}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-neon/20 bg-neon/8 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-neon green-glow"
+          <div className="max-w-3xl">
+            <div
+              className="animate-rise mb-6 inline-flex items-center gap-2 rounded-full border border-neon/20 bg-neon/8 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-neon green-glow"
             >
               <Sparkles size={14} />
               Organise. Rejoins. Joue.
-            </motion.div>
-            <motion.h1
-              variants={fadeUp}
-              className="font-display text-[clamp(4rem,18vw,8.4rem)] font-black leading-[0.86] tracking-normal text-white"
+            </div>
+            <h1
+              className="animate-rise animation-delay-1 font-display text-[clamp(4rem,18vw,8.4rem)] font-black leading-[0.86] tracking-normal text-white"
             >
               Trouve
               <span className="block text-neon drop-shadow-[0_0_28px_rgba(57,255,136,0.34)]">
                 ton match.
               </span>
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="mt-7 max-w-2xl text-lg leading-8 text-white/72 sm:text-xl"
+            </h1>
+            <p
+              className="animate-rise animation-delay-2 mt-7 max-w-2xl text-lg leading-8 text-white/72 sm:text-xl"
             >
               L'application qui connecte les joueurs et simplifie l'organisation
               des matchs.
-            </motion.p>
-            <motion.p
-              variants={fadeUp}
-              className="mt-3 inline-flex rounded-full border border-neon/18 bg-neon/8 px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-neon"
+            </p>
+            <p
+              className="animate-rise animation-delay-3 mt-3 inline-flex rounded-full border border-neon/18 bg-neon/8 px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-neon"
             >
               100% gratuit
-            </motion.p>
+            </p>
 
-            <motion.form
-              variants={fadeUp}
-              onSubmit={handleSubmit}
-              className="mt-9 flex w-full max-w-2xl flex-col gap-3 rounded-[1.75rem] border border-white/10 bg-white/[0.055] p-2 shadow-soft backdrop-blur-xl sm:flex-row"
-            >
-              <label className="sr-only" htmlFor="email">
-                Adresse email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="ton.email@exemple.com"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                className="h-14 min-w-0 flex-1 rounded-2xl border border-transparent bg-black/25 px-5 text-base text-white outline-none transition placeholder:text-white/35 focus:border-neon/45"
-              />
-              <button
-                type="submit"
-                disabled={formState === "loading"}
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-neon px-5 text-sm font-black text-[#041007] shadow-glow transition hover:-translate-y-0.5 hover:bg-mint sm:px-6"
-              >
-                {formState === "loading"
-                  ? "Inscription..."
-                  : "Être informé du lancement"}
-                <ArrowRight size={18} />
-              </button>
-            </motion.form>
-            <motion.p
-              variants={fadeUp}
-              className="mt-3 max-w-2xl text-xs leading-5 text-white/42"
-            >
-              En t'inscrivant, tu acceptes d'être contacté concernant le
-              lancement de FootMatch.
-            </motion.p>
-            {message && (
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`mt-3 max-w-2xl text-sm ${
-                  formState === "error" ? "text-red-300" : "text-neon"
-                }`}
-              >
-                {message}
-              </motion.p>
-            )}
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-5 flex flex-col gap-3 sm:flex-row"
+            <div className="animate-rise animation-delay-4">
+              <SignupForm />
+            </div>
+
+            <div
+              className="animate-rise animation-delay-5 mt-5 flex flex-col gap-3 sm:flex-row"
             >
               <StoreBadge
                 type="App Store"
@@ -365,14 +257,11 @@ export default function Home() {
                 label="FootMatch bientot disponible sur Google Play"
                 icon={<Play size={21} />}
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 24 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-xl"
+          <div
+            className="animate-rise animation-delay-3 relative mx-auto w-full max-w-xl"
           >
             <div className="absolute inset-x-8 top-16 h-72 rounded-full bg-neon/20 blur-[80px]" />
             <div className="relative grid place-items-center">
@@ -399,7 +288,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -420,17 +309,11 @@ export default function Home() {
             </p>
           </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ staggerChildren: 0.12 }}
-            className="grid gap-8 md:grid-cols-3"
-          >
+          <div className="grid gap-8 md:grid-cols-3">
             <PhoneMockup variant="create" title="Crée ton match" subtitle="Création" />
             <PhoneMockup variant="join" title="Rejoins en 1 tap" subtitle="Matchs" />
             <PhoneMockup variant="chat" title="Équipe synchronisée" subtitle="Communauté" />
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -440,12 +323,8 @@ export default function Home() {
             {matchCards.map((card, index) => {
               const Icon = card.icon;
               return (
-                <motion.article
+                <article
                   key={card.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ delay: index * 0.06 }}
                   className="premium-border rounded-[1.6rem] p-5"
                 >
                   <div className="mb-8 grid h-12 w-12 place-items-center rounded-2xl bg-neon/12 text-neon">
@@ -455,7 +334,7 @@ export default function Home() {
                     {card.title}
                   </h3>
                   <p className="mt-4 text-sm leading-6 text-white/58">{card.text}</p>
-                </motion.article>
+                </article>
               );
             })}
           </div>
@@ -573,6 +452,5 @@ export default function Home() {
         </div>
       </footer>
     </main>
-    </LazyMotion>
   );
 }
