@@ -19,23 +19,23 @@ import { SignupForm } from "../components/SignupForm";
 
 const matchCards = [
   {
-    title: "Fini les groupes WhatsApp et Facebook dÃ©sorganisÃ©s",
+    title: "Fini les groupes WhatsApp et Facebook désorganisés",
     text: "Un seul endroit pour les dispos, les confirmations et les infos du match.",
     icon: MessageCircle
   },
   {
     title: "Trouve des joueurs rapidement",
-    text: "ComplÃ¨te une Ã©quipe en quelques minutes avec des joueurs proches et motivÃ©s.",
+    text: "Complète une équipe en quelques minutes avec des joueurs proches et motivés.",
     icon: Zap
   },
   {
     title: "Organise tes matchs facilement",
-    text: "CrÃ©neau, niveau, terrain, nombre de places: tout est clair dÃ¨s le dÃ©part.",
+    text: "Créneau, niveau, terrain, nombre de places: tout est clair dès le départ.",
     icon: CalendarPlus
   },
   {
-    title: "Rejoins des matchs prÃ¨s de toi",
-    text: "Five, city stade ou foot Ã  11: repÃ¨re les parties ouvertes autour de toi.",
+    title: "Rejoins des matchs près de toi",
+    text: "Five, city stade ou foot à 11: repère les parties ouvertes autour de toi.",
     icon: MapPin
   }
 ];
@@ -125,7 +125,7 @@ function PhoneMockup({
               ))}
               <div className="rounded-2xl bg-neon p-4 text-[#041007] shadow-glow">
                 <p className="text-xs font-bold uppercase tracking-[0.14em]">
-                  Match prÃªt
+                  Match prêt
                 </p>
                 <p className="mt-2 text-2xl font-black">Publier</p>
               </div>
@@ -162,8 +162,8 @@ function PhoneMockup({
             <div className="space-y-3">
               {[
                 ["Samir", "Je peux venir avec un gardien."],
-                ["Nina", "Terrain rÃ©servÃ© Ã  19h."],
-                ["You", "Parfait, on valide l'Ã©quipe."]
+                ["Nina", "Terrain réservé à 19h."],
+                ["You", "Parfait, on valide l'équipe."]
               ].map(([name, message], index) => (
                 <div
                   key={name}
@@ -181,7 +181,7 @@ function PhoneMockup({
               ))}
               <div className="mt-5 flex items-center gap-2 rounded-2xl border border-white/8 bg-black/25 px-3 py-3">
                 <CircleDot size={14} className="text-neon" />
-                <span className="text-xs text-white/85">Message Ã©quipe...</span>
+                <span className="text-xs text-white/85">Message équipe...</span>
               </div>
             </div>
           )}
@@ -270,14 +270,14 @@ export default function Home() {
             <div className="relative grid place-items-center">
               <PhoneMockup
                 variant="join"
-                title="Match ouvert prÃ¨s de toi"
+                title="Match ouvert près de toi"
                 subtitle="Rejoindre"
                 className="rotate-[-4deg]"
               />
               <div className="premium-border absolute -right-2 bottom-10 hidden w-52 rounded-[1.4rem] p-4 sm:block">
                 <div className="mb-3 flex items-center gap-2 text-sm font-bold text-white">
                   <Users size={18} className="text-neon" />
-                  Ã‰quipe en cours
+                  Équipe en cours
                 </div>
                 <div className="flex -space-x-2">
                   {["AM", "LK", "NS", "YO", "+3"].map((name) => (
@@ -303,19 +303,19 @@ export default function Home() {
                 Apercu application
               </p>
               <h2 className="font-display text-4xl font-black text-white sm:text-5xl">
-                Organiser un match n'a jamais Ã©tÃ© aussi simple.
+                Organiser un match n'a jamais été aussi simple.
               </h2>
             </div>
               <p className="max-w-md text-base leading-7 text-white/85">
-              CrÃ©e un match, trouve des joueurs ou rejoins une partie. Toute
-              l'organisation au mÃªme endroit.
+              Crée un match, trouve des joueurs ou rejoins une partie. Toute
+              l'organisation au même endroit.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            <PhoneMockup variant="create" title="CrÃ©e ton match" subtitle="CrÃ©ation" />
+            <PhoneMockup variant="create" title="Crée ton match" subtitle="Création" />
             <PhoneMockup variant="join" title="Rejoins en 1 tap" subtitle="Matchs" />
-            <PhoneMockup variant="chat" title="Ã‰quipe synchronisÃ©e" subtitle="CommunautÃ©" />
+            <PhoneMockup variant="chat" title="Équipe synchronisée" subtitle="Communauté" />
           </div>
         </div>
       </section>
@@ -350,22 +350,22 @@ export default function Home() {
             <div>
               <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-neon/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-neon">
                 <ShieldCheck size={14} />
-                CommunautÃ©
+                Communauté
               </div>
               <h2 className="font-display text-3xl font-black leading-tight text-white sm:text-5xl">
                 Rejoins les premiers joueurs FootMatch.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-white/85">
-                FootMatch arrive bientÃ´t sur l'App Store et Google Play.
+                FootMatch arrive bientôt sur l'App Store et Google Play.
               </p>
               <p className="mt-4 max-w-2xl text-base leading-7 text-white/85">
-                Inscris-toi pour Ãªtre prÃ©venu du lancement officiel, accÃ©der Ã 
-                l'application en avant-premiÃ¨re et suivre les prochaines
-                Ã©volutions de FootMatch.
+                Inscris-toi pour être prévenu du lancement officiel, accéder à
+                l'application en avant-première et suivre les prochaines
+                évolutions de FootMatch.
               </p>
               <p className="mt-4 max-w-2xl text-base leading-7 text-white/85">
-                Une Version 2 est dÃ©jÃ  en prÃ©paration avec de nouvelles
-                fonctionnalitÃ©s pour simplifier encore davantage l'organisation
+                Une Version 2 est déjà en préparation avec de nouvelles
+                fonctionnalités pour simplifier encore davantage l'organisation
                 des matchs amateurs.
               </p>
             </div>
@@ -382,9 +382,9 @@ export default function Home() {
               <div className="space-y-3">
                 {[
                   "Disponible sur iPhone et Android",
-                  "PrÃ©venu avant la sortie officielle",
-                  "AccÃ¨s anticipÃ© aux futures Ã©volutions",
-                  "Version 2 dÃ©jÃ  en prÃ©paration"
+                  "Prévenu avant la sortie officielle",
+                  "Accès anticipé aux futures évolutions",
+                  "Version 2 déjà en préparation"
                 ].map((item) => (
                   <div
                     key={item}
@@ -419,7 +419,7 @@ export default function Home() {
               </a>
             </div>
             <p className="mt-3 text-xs text-white/60">
-              Â© 2026 FootMatchâ„¢. Tous droits rÃ©servÃ©s.
+              © 2026 FootMatch™. Tous droits réservés.
             </p>
           </div>
           <div className="flex flex-col gap-5 md:items-end">
@@ -439,13 +439,13 @@ export default function Home() {
                 rel="noreferrer"
                 className="inline-flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 text-sm font-semibold text-white/85 transition hover:-translate-y-0.5 hover:border-neon/35 hover:text-neon"
               >
-                <span className="text-base font-black">â™ª</span>
+                <span className="text-base font-black">♪</span>
                 TikTok
               </a>
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/85 md:justify-end">
               <a href="/politique-confidentialite" className="hover:text-neon">
-                Politique de confidentialitÃ©
+                Politique de confidentialité
               </a>
               <a href="/conditions-utilisation" className="hover:text-neon">
                 Conditions d'utilisation
