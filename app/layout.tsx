@@ -27,14 +27,21 @@ export const metadata: Metadata = {
     siteName: "FootMatch",
     images: [
       {
-        url: "/brand/logo-footmatch-transparent.png",
-        width: 1860,
-        height: 846,
-        alt: "Logo FootMatch"
+        url: "/brand/footmatch-og.png",
+        width: 1200,
+        height: 630,
+        alt: "FootMatch - Trouve ton match"
       }
     ],
     locale: "fr_FR",
     type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FootMatch - Trouve ton match",
+    description:
+      "L'application qui connecte les joueurs et simplifie l'organisation des matchs.",
+    images: ["/brand/footmatch-og.png"]
   },
   icons: {
     icon: [
