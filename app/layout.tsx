@@ -17,12 +17,12 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "FootMatch - Trouve ton match",
   description:
-    "FootMatch permet aux joueurs amateurs de créer ou rejoindre rapidement des matchs de football près de chez eux.",
+    "L'application qui connecte les joueurs et simplifie les matchs.",
   metadataBase: new URL("https://footmatch.io"),
   openGraph: {
     title: "FootMatch - Trouve ton match",
     description:
-      "L'application qui permet aux joueurs amateurs de créer ou rejoindre un match facilement.",
+      "L'application qui connecte les joueurs et simplifie les matchs.",
     url: "https://footmatch.io",
     siteName: "FootMatch",
     images: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FootMatch - Trouve ton match",
     description:
-      "L'application qui connecte les joueurs et simplifie l'organisation des matchs.",
+      "L'application qui connecte les joueurs et simplifie les matchs.",
     images: ["/brand/footmatch-og.png"]
   },
   icons: {
