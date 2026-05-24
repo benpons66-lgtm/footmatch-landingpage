@@ -57,6 +57,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${sora.variable}`}>
       <body>
+        <link
+          rel="preload"
+          href="/brand/logo-footmatch-site.webp"
+          as="image"
+          type="image/webp"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

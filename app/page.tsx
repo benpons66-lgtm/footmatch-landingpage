@@ -107,9 +107,9 @@ function PhoneMockup({
             <p className="mb-2 text-[11px] uppercase tracking-[0.18em] text-neon">
               {subtitle}
             </p>
-            <h3 className="font-display text-2xl font-black leading-tight text-white">
+            <p className="font-display text-2xl font-black leading-tight text-white">
               {title}
-            </h3>
+            </p>
           </div>
 
           {isCreate && (
