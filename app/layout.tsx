@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -58,18 +57,24 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${sora.variable}`}>
       <body>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-3W2TJF70ZE"
-          strategy="lazyOnload"
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('load', function () {
+                window.setTimeout(function () {
+                  window.dataLayer = window.dataLayer || [];
+                  window.gtag = function(){ window.dataLayer.push(arguments); };
+                  window.gtag('js', new Date());
+                  window.gtag('config', 'G-3W2TJF70ZE');
+                  var script = document.createElement('script');
+                  script.async = true;
+                  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-3W2TJF70ZE';
+                  document.head.appendChild(script);
+                }, 3000);
+              });
+            `
+          }}
         />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-3W2TJF70ZE');
-          `}
-        </Script>
         {children}
       </body>
     </html>
