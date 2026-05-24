@@ -38,7 +38,7 @@ export function SignupForm() {
 
       setEmail("");
       setFormState("success");
-      setMessage(data.message || "Merci, ton email a bien Ã©tÃ© pris en compte.");
+      setMessage(data.message || "Merci, ton email a bien été pris en compte.");
     } catch (error) {
       setFormState("error");
       setMessage(
@@ -73,14 +73,14 @@ export function SignupForm() {
           disabled={formState === "loading"}
           className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-neon px-5 text-sm font-black text-[#041007] shadow-glow transition hover:-translate-y-0.5 hover:bg-mint disabled:cursor-wait disabled:opacity-75 sm:px-6"
         >
-          {formState === "loading" ? "Inscription..." : "ÃŠtre informÃ© du lancement"}
+          {formState === "loading" ? "Inscription..." : "Être informé du lancement"}
           <span aria-hidden="true" className="text-lg leading-none">
             →
           </span>
         </button>
       </form>
       <p className="mt-3 max-w-2xl text-xs leading-5 text-white/60">
-        En t'inscrivant, tu acceptes d'Ãªtre contactÃ© concernant le lancement de
+        En t'inscrivant, tu acceptes d'être contacté concernant le lancement de
         FootMatch.
       </p>
       {message && (
