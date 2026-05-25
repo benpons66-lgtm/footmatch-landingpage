@@ -16,6 +16,11 @@
 } from "lucide-react";
 import { SignupForm } from "../components/SignupForm";
 
+export const metadata = {
+  alternates: {
+    canonical: "https://footmatch.io/"
+  }
+};
 
 const matchCards = [
   {

@@ -2,6 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Mail } from "lucide-react";
 
+export const metadata = {
+  title: "Contact - FootMatch",
+  alternates: {
+    canonical: "https://footmatch.io/contact"
+  }
+};
+
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-pitch px-5 py-8 text-white sm:px-8">

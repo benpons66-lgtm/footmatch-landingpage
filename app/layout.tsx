@@ -63,9 +63,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${inter.variable} ${sora.variable}`}>
-      <head>
-        <link rel="canonical" href="https://footmatch.io/" />
-      </head>
       <body>
         <link
           rel="preload"

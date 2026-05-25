@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+export const metadata = {
+  title: "Politique de confidentialite - FootMatch",
+  alternates: {
+    canonical: "https://footmatch.io/politique-confidentialite"
+  }
+};
+
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-pitch px-5 py-8 text-white sm:px-8">

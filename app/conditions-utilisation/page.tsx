@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+export const metadata = {
+  title: "Conditions d'utilisation - FootMatch",
+  alternates: {
+    canonical: "https://footmatch.io/conditions-utilisation"
+  }
+};
+
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-pitch px-5 py-8 text-white sm:px-8">
