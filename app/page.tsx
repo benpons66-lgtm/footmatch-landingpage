@@ -449,6 +449,9 @@ export default function Home() {
               </a>
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/85 md:justify-end">
+              <a href="/mentions-legales" className="hover:text-neon">
+                Mentions légales
+              </a>
               <a href="/politique-confidentialite" className="hover:text-neon">
                 Politique de confidentialité
               </a>
