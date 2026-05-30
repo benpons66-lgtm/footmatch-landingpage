@@ -4,11 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, follow" />
-    <title>Adresse mail confirmee - FootMatch</title>
-    <meta
-      name="description"
-      content="Adresse mail confirmee. Redirection vers l'application FootMatch."
-    />
+    <title>FootMatch</title>
+    <meta name="description" content="FootMatch — Trouve un match de foot en 30 secondes." />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <style>
       :root {
@@ -21,16 +18,12 @@
         --text: #ffffff;
         --muted: rgba(255, 255, 255, 0.7);
         --line: rgba(255, 255, 255, 0.16);
+        --red: #ff6b6b;
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
-      html,
-      body {
-        min-height: 100%;
-      }
+      html, body { min-height: 100%; }
 
       body {
         margin: 0;
@@ -43,9 +36,7 @@
           radial-gradient(circle at 12% 80%, rgba(57, 255, 136, 0.08), transparent 24rem),
           linear-gradient(180deg, #07110b 0%, var(--bg) 58%, #000 100%);
         color: var(--text);
-        font-family:
-          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
       main {
@@ -95,10 +86,7 @@
         mask-image: linear-gradient(to bottom, black, transparent 78%);
       }
 
-      .content {
-        position: relative;
-        z-index: 1;
-      }
+      .content { position: relative; z-index: 1; }
 
       .badge {
         width: 74px;
@@ -116,15 +104,15 @@
 
       h1 {
         margin: 0;
-        font-size: clamp(34px, 8vw, 58px);
-        line-height: 0.96;
-        letter-spacing: 0;
+        font-size: clamp(28px, 7vw, 48px);
+        line-height: 1.05;
+        letter-spacing: -0.5px;
       }
 
       .status {
         margin: 18px auto 0;
         color: var(--muted);
-        font-size: clamp(17px, 3.5vw, 21px);
+        font-size: clamp(15px, 3.5vw, 19px);
         line-height: 1.5;
       }
 
@@ -146,9 +134,7 @@
         margin-top: 30px;
       }
 
-      .actions.is-visible {
-        display: grid;
-      }
+      .actions.is-visible { display: grid; }
 
       .button {
         min-height: 56px;
@@ -162,16 +148,12 @@
         font-weight: 800;
         font-size: 16px;
         text-decoration: none;
-        transition:
-          transform 180ms ease,
-          border-color 180ms ease,
-          background 180ms ease,
-          box-shadow 180ms ease;
+        cursor: pointer;
+        font-family: inherit;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
       }
 
-      .button:hover {
-        transform: translateY(-2px);
-      }
+      .button:hover { transform: translateY(-2px); }
 
       .button-primary {
         border-color: rgba(57, 255, 136, 0.7);
@@ -180,9 +162,7 @@
         box-shadow: 0 0 30px rgba(57, 255, 136, 0.2);
       }
 
-      .button-secondary {
-        background: var(--panel-strong);
-      }
+      .button-secondary { background: var(--panel-strong); }
 
       .tagline {
         margin: 24px auto 0;
@@ -197,31 +177,67 @@
         font-size: 14px;
       }
 
-      footer a {
-        color: inherit;
-        text-decoration: none;
+      footer a { color: inherit; text-decoration: none; }
+      footer a:hover { color: var(--green); }
+
+      /* ── Formulaire reset mot de passe ── */
+      .form-group {
+        margin-top: 18px;
+        text-align: left;
       }
 
-      footer a:hover {
-        color: var(--green);
+      .form-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: 7px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
+      .form-input {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        font-size: 16px;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 150ms ease, box-shadow 150ms ease;
       }
+
+      .form-input:focus {
+        border-color: rgba(57, 255, 136, 0.6);
+        box-shadow: 0 0 0 3px rgba(57, 255, 136, 0.12);
+      }
+
+      .form-error {
+        color: var(--red);
+        font-size: 13px;
+        margin-top: 12px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: rgba(255, 107, 107, 0.1);
+        border: 1px solid rgba(255, 107, 107, 0.25);
+        display: none;
+        text-align: left;
+      }
+
+      .form-error.is-visible { display: block; }
+
+      .hidden { display: none !important; }
+
+      @keyframes spin { to { transform: rotate(360deg); } }
 
       @media (min-width: 560px) {
-        .actions {
-          grid-template-columns: 1fr 1fr;
-        }
+        .actions { grid-template-columns: 1fr 1fr; }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
           scroll-behavior: auto !important;
@@ -232,29 +248,77 @@
   </head>
   <body>
     <main>
-      <a class="brand" href="/" aria-label="Retour a FootMatch">
+      <a class="brand" href="/" aria-label="Retour à FootMatch">
         <img src="/brand/logo-footmatch-transparent.png" alt="FootMatch" />
       </a>
 
-      <section class="card" aria-labelledby="confirmation-title">
+      <!-- ── Vue 1 : Confirmation email (défaut) ── -->
+      <section class="card" id="confirmation-card" aria-labelledby="confirmation-title">
         <div class="content">
           <div class="badge" aria-hidden="true">✓</div>
           <h1 id="confirmation-title">Adresse mail confirmée !</h1>
-          <p class="status" id="status-message">
-            Redirection vers FootMatch en cours...
-          </p>
+          <p class="status" id="status-message">Redirection vers FootMatch en cours...</p>
           <div class="spinner" aria-label="Chargement"></div>
-
           <div class="actions" id="fallback-actions">
-            <a class="button button-primary" href="footmatch://" id="open-app">
-              Ouvrir FootMatch
-            </a>
-            <a class="button button-secondary" href="https://footmatch.io" id="download-app">
-              Télécharger l'app
-            </a>
+            <a class="button button-primary" href="footmatch://" id="open-app">Ouvrir FootMatch</a>
+            <a class="button button-secondary" href="https://footmatch.io" id="download-app">Télécharger l'app</a>
+          </div>
+          <p class="tagline">Trouve un match de foot en 30 secondes. Gratuit.</p>
+        </div>
+      </section>
+
+      <!-- ── Vue 2 : Reset mot de passe (affiché si type=recovery) ── -->
+      <section class="card hidden" id="recovery-card" aria-labelledby="recovery-title">
+        <div class="content">
+
+          <!-- État : chargement session -->
+          <div id="recovery-loading">
+            <div class="badge" aria-hidden="true">🔑</div>
+            <h1 id="recovery-title">Nouveau mot de passe</h1>
+            <p class="status">Vérification du lien en cours...</p>
+            <div class="spinner" aria-label="Chargement"></div>
           </div>
 
-          <p class="tagline">Trouve un match de foot en 30 secondes. Gratuit.</p>
+          <!-- État : formulaire (caché jusqu'à ce que la session soit prête) -->
+          <div id="recovery-form" class="hidden">
+            <div class="badge" aria-hidden="true">🔑</div>
+            <h1>Nouveau mot de passe</h1>
+            <p class="status">Choisis un nouveau mot de passe pour ton compte FootMatch.</p>
+            <div class="form-group">
+              <label class="form-label" for="new-password">Nouveau mot de passe</label>
+              <input class="form-input" type="password" id="new-password" placeholder="Minimum 6 caractères" autocomplete="new-password" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="confirm-password">Confirmer le mot de passe</label>
+              <input class="form-input" type="password" id="confirm-password" placeholder="Répète ton mot de passe" autocomplete="new-password" />
+            </div>
+            <p class="form-error" id="form-error"></p>
+            <div class="actions is-visible" style="margin-top:24px; grid-template-columns:1fr;">
+              <button class="button button-primary" id="reset-btn">Mettre à jour le mot de passe</button>
+            </div>
+          </div>
+
+          <!-- État : succès -->
+          <div id="recovery-success" class="hidden">
+            <div class="badge" aria-hidden="true">✓</div>
+            <h1>Mot de passe mis à jour !</h1>
+            <p class="status">Tu peux maintenant te connecter dans l'app FootMatch avec ton nouveau mot de passe.</p>
+            <div class="actions is-visible" style="margin-top:30px;">
+              <a class="button button-primary" href="footmatch://">Ouvrir FootMatch</a>
+              <a class="button button-secondary" href="https://footmatch.io">Télécharger l'app</a>
+            </div>
+          </div>
+
+          <!-- État : erreur -->
+          <div id="recovery-error-view" class="hidden">
+            <div class="badge" style="font-size:28px;" aria-hidden="true">⚠️</div>
+            <h1 style="font-size:clamp(22px,5vw,34px);">Lien expiré</h1>
+            <p class="status" id="recovery-error-msg">Ce lien de réinitialisation n'est plus valide. Demande un nouvel email depuis l'app FootMatch.</p>
+            <div class="actions is-visible" style="margin-top:30px; grid-template-columns:1fr;">
+              <a class="button button-primary" href="footmatch://">Ouvrir FootMatch</a>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -264,45 +328,137 @@
       </footer>
     </main>
 
+    <!-- Supabase JS (chargé uniquement si besoin) -->
     <script>
       (function () {
-        var appUrl = "footmatch://";
-        var fallbackUrl = "https://footmatch.io";
-        var userAgent = navigator.userAgent || navigator.vendor || "";
-        var downloadButton = document.getElementById("download-app");
-        var actions = document.getElementById("fallback-actions");
-        var statusMessage = document.getElementById("status-message");
-        var openButton = document.getElementById("open-app");
+        var SUPABASE_URL  = 'https://gryuednaikgsfdwofbxd.supabase.co';
+        var SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdyeXVlZG5haWtnc2Zkd29mYnhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxOTc0OTMsImV4cCI6MjA4OTc3MzQ5M30.yE9aXv5G7x6B3n7uiIHWoSEW4Uupzf-kojDfyQxR83Q';
 
-        function getDownloadUrl() {
-          if (/android/i.test(userAgent)) {
-            return fallbackUrl;
-          }
+        // ── Détecter le type depuis l'URL ──────────────────────────────────────
+        var hashParams  = new URLSearchParams(window.location.hash.substring(1));
+        var queryParams = new URLSearchParams(window.location.search);
+        var urlType     = hashParams.get('type') || queryParams.get('type');
 
-          if (/iPad|iPhone|iPod/.test(userAgent)) {
-            return fallbackUrl;
-          }
-
-          return fallbackUrl;
+        // ── Helpers DOM ────────────────────────────────────────────────────────
+        function show(id) { document.getElementById(id).classList.remove('hidden'); }
+        function hide(id) { document.getElementById(id).classList.add('hidden'); }
+        function showError(msg) {
+          hide('recovery-loading');
+          hide('recovery-form');
+          hide('recovery-success');
+          show('recovery-error-view');
+          if (msg) document.getElementById('recovery-error-msg').textContent = msg;
+        }
+        function showForm() {
+          hide('recovery-loading');
+          show('recovery-form');
+          setTimeout(function () {
+            var input = document.getElementById('new-password');
+            if (input) input.focus();
+          }, 100);
         }
 
-        function openApp() {
-          window.location.href = appUrl;
+        // ── CAS 1 : Reset mot de passe (type=recovery) ─────────────────────────
+        if (urlType === 'recovery') {
+          hide('confirmation-card');
+          show('recovery-card');
+
+          // Charger Supabase JS depuis CDN
+          var script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+          script.onload = function () { initRecovery(); };
+          script.onerror = function () { showError('Erreur de chargement. Vérifie ta connexion internet et réessaie.'); };
+          document.head.appendChild(script);
+
+          function initRecovery() {
+            var client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+              auth: { detectSessionInUrl: false, persistSession: false },
+            });
+
+            // Récupérer les tokens depuis le hash ou les query params
+            var accessToken  = hashParams.get('access_token');
+            var refreshToken = hashParams.get('refresh_token') || '';
+            var tokenHash    = queryParams.get('token_hash');
+
+            var sessionPromise;
+            if (tokenHash) {
+              // Flux PKCE (Supabase v2 récent) — token_hash en query param
+              sessionPromise = client.auth.verifyOtp({ token_hash: tokenHash, type: 'recovery' });
+            } else if (accessToken) {
+              // Flux implicit (ancien) — access_token dans le hash
+              sessionPromise = client.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+            } else {
+              showError('Lien invalide. Demande un nouvel email de réinitialisation depuis l\'app FootMatch.');
+              return;
+            }
+
+            sessionPromise.then(function (result) {
+              if (result.error) {
+                showError('Lien expiré ou déjà utilisé. Demande un nouvel email de réinitialisation depuis l\'app FootMatch.');
+                return;
+              }
+              showForm();
+
+              // Bouton submit
+              document.getElementById('reset-btn').addEventListener('click', function () {
+                var newPwd     = document.getElementById('new-password').value;
+                var confirmPwd = document.getElementById('confirm-password').value;
+                var errEl      = document.getElementById('form-error');
+                var btn        = document.getElementById('reset-btn');
+
+                errEl.classList.remove('is-visible');
+
+                if (newPwd.length < 6) {
+                  errEl.textContent = 'Le mot de passe doit contenir au moins 6 caractères.';
+                  errEl.classList.add('is-visible');
+                  return;
+                }
+                if (newPwd !== confirmPwd) {
+                  errEl.textContent = 'Les deux mots de passe ne correspondent pas.';
+                  errEl.classList.add('is-visible');
+                  return;
+                }
+
+                btn.textContent = 'Mise à jour en cours…';
+                btn.disabled    = true;
+
+                client.auth.updateUser({ password: newPwd }).then(function (r) {
+                  if (r.error) {
+                    errEl.textContent = 'Erreur : ' + r.error.message;
+                    errEl.classList.add('is-visible');
+                    btn.textContent = 'Mettre à jour le mot de passe';
+                    btn.disabled    = false;
+                  } else {
+                    hide('recovery-form');
+                    show('recovery-success');
+                  }
+                });
+              });
+            });
+          }
+
+        // ── CAS 2 : Confirmation email (comportement existant) ─────────────────
+        } else {
+          var appUrl      = 'footmatch://';
+          var fallbackUrl = 'https://footmatch.io';
+          var userAgent   = navigator.userAgent || navigator.vendor || '';
+          var downloadBtn = document.getElementById('download-app');
+          var actions     = document.getElementById('fallback-actions');
+          var statusMsg   = document.getElementById('status-message');
+          var openBtn     = document.getElementById('open-app');
+
+          downloadBtn.href = fallbackUrl;
+          openBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = appUrl;
+          });
+
+          window.setTimeout(function () { window.location.href = appUrl; }, 1000);
+          window.setTimeout(function () {
+            actions.classList.add('is-visible');
+            statusMsg.textContent = 'Si l\'application ne s\'ouvre pas automatiquement, utilise les boutons ci-dessous.';
+          }, 3000);
         }
-
-        downloadButton.href = getDownloadUrl();
-        openButton.addEventListener("click", function (event) {
-          event.preventDefault();
-          openApp();
-        });
-
-        window.setTimeout(openApp, 1000);
-
-        window.setTimeout(function () {
-          actions.classList.add("is-visible");
-          statusMessage.textContent =
-            "Si l'application ne s'ouvre pas automatiquement, utilise les boutons ci-dessous.";
-        }, 3000);
       })();
     </script>
   </body>
