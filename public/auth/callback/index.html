@@ -422,17 +422,28 @@
                 btn.textContent = 'Mise à jour en cours…';
                 btn.disabled    = true;
 
-                client.auth.updateUser({ password: newPwd }).then(function (r) {
-                  if (r.error) {
-                    errEl.textContent = 'Erreur : ' + r.error.message;
-                    errEl.classList.add('is-visible');
-                    btn.textContent = 'Mettre à jour le mot de passe';
-                    btn.disabled    = false;
-                  } else {
-                    hide('recovery-form');
-                    show('recovery-success');
-                  }
-                });
+                function doUpdate(attempt) {
+                  client.auth.updateUser({ password: newPwd }).then(function (r) {
+                    if (r.error) {
+                      // "Load failed" = erreur réseau iOS Safari au premier appel → retry automatique
+                      if (attempt === 0 && r.error.message && r.error.message.toLowerCase().includes('load failed')) {
+                        btn.textContent = 'Nouvelle tentative…';
+                        setTimeout(function () { doUpdate(1); }, 800);
+                        return;
+                      }
+                      errEl.textContent = r.error.message.toLowerCase().includes('load failed')
+                        ? 'Connexion difficile. Réessaie dans quelques secondes.'
+                        : 'Erreur : ' + r.error.message;
+                      errEl.classList.add('is-visible');
+                      btn.textContent = 'Mettre à jour le mot de passe';
+                      btn.disabled    = false;
+                    } else {
+                      hide('recovery-form');
+                      show('recovery-success');
+                    }
+                  });
+                }
+                doUpdate(0);
               });
             });
           }
