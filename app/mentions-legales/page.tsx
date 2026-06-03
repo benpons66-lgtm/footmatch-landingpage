@@ -3,6 +3,8 @@ import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
   title: "Mentions légales - FootMatch",
+  description: "Mentions légales de FootMatch – éditeur, hébergement, propriété intellectuelle et données personnelles.",
+  robots: { index: false, follow: false },
   alternates: {
     canonical: "https://footmatch.io/mentions-legales"
   }

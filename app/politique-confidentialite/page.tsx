@@ -2,7 +2,9 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Politique de confidentialite - FootMatch",
+  title: "Politique de confidentialité - FootMatch",
+  description: "Politique de confidentialité de FootMatch – comment vos données personnelles sont collectées, utilisées et protégées.",
+  robots: { index: false, follow: false },
   alternates: {
     canonical: "https://footmatch.io/politique-confidentialite"
   }

@@ -15,14 +15,26 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "FootMatch - Trouve ton match",
+  title: "FootMatch – Organise et rejoins des matchs de foot près de toi",
   description:
-    "L'application qui connecte les joueurs et simplifie les matchs.",
+    "FootMatch est l'app gratuite pour organiser et rejoindre des matchs de foot près de chez toi. Trouve des joueurs, gère les dispos et joue plus souvent. 100% gratuit.",
+  applicationName: "FootMatch",
+  keywords: [
+    "foot amateur",
+    "matchs de foot",
+    "organiser match foot",
+    "rejoindre match foot",
+    "five",
+    "city stade",
+    "football amateur",
+    "trouver des joueurs de foot"
+  ],
+  robots: { index: true, follow: true },
   metadataBase: new URL("https://footmatch.io"),
   openGraph: {
-    title: "FootMatch - Trouve ton match",
+    title: "FootMatch – Organise et rejoins des matchs de foot près de toi",
     description:
-      "L'application qui connecte les joueurs et simplifie les matchs.",
+      "FootMatch est l'app gratuite pour organiser et rejoindre des matchs de foot près de chez toi. Trouve des joueurs, gère les dispos et joue plus souvent. 100% gratuit.",
     url: "https://footmatch.io",
     siteName: "FootMatch",
     images: [
@@ -30,7 +42,7 @@ export const metadata: Metadata = {
         url: "/brand/footmatch-og.png",
         width: 1200,
         height: 630,
-        alt: "FootMatch - Trouve ton match"
+        alt: "FootMatch – Organise et rejoins des matchs de foot près de toi"
       }
     ],
     locale: "fr_FR",
@@ -38,9 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FootMatch - Trouve ton match",
+    title: "FootMatch – Organise et rejoins des matchs de foot près de toi",
     description:
-      "L'application qui connecte les joueurs et simplifie les matchs.",
+      "FootMatch est l'app gratuite pour organiser et rejoindre des matchs de foot près de chez toi. Trouve des joueurs, gère les dispos et joue plus souvent. 100% gratuit.",
     images: ["/brand/footmatch-og.png"]
   },
   icons: {

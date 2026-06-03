@@ -3,6 +3,8 @@ import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
   title: "Conditions d'utilisation - FootMatch",
+  description: "Conditions générales d'utilisation de FootMatch – règles d'utilisation de l'application et du site.",
+  robots: { index: false, follow: false },
   alternates: {
     canonical: "https://footmatch.io/conditions-utilisation"
   }

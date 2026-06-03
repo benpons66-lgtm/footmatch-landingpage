@@ -4,6 +4,8 @@ import { ArrowLeft, Mail } from "lucide-react";
 
 export const metadata = {
   title: "Contact - FootMatch",
+  description: "Contacte l'équipe FootMatch pour toute question sur l'application ou le lancement.",
+  robots: { index: false, follow: false },
   alternates: {
     canonical: "https://footmatch.io/contact"
   }
