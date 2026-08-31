@@ -14,13 +14,16 @@
   Users,
   Zap
 } from "lucide-react";
-import { SignupForm } from "../components/SignupForm";
 
 export const metadata = {
   alternates: {
     canonical: "https://footmatch.io/"
   }
 };
+
+const APP_STORE_URL = "https://apps.apple.com/app/id6772621131";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=fr.footmatch.app";
 
 const matchCards = [
   {
@@ -48,27 +51,31 @@ const matchCards = [
 function StoreBadge({
   type,
   label,
+  href,
   icon
 }: {
   type: string;
   label: string;
+  href: string;
   icon: React.ReactNode;
 }) {
   return (
-    <button
-      type="button"
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
       aria-label={label}
       className="store-badge flex h-14 min-w-[168px] items-center gap-3 rounded-2xl px-4 text-left"
     >
       <span className="text-white">{icon}</span>
       <span>
         <span className="block text-[11px] uppercase tracking-[0.18em] text-white/85">
-          Bientot disponible
+          Telecharger sur
         </span>
         <span className="block font-semibold text-white">{type}</span>
       </span>
       <span className="sr-only">{label}</span>
-    </button>
+    </a>
   );
 }
 
@@ -248,21 +255,19 @@ export default function Home() {
             </p>
 
 
-            <div className="animate-rise animation-delay-4">
-              <SignupForm />
-            </div>
-
             <div
-              className="animate-rise animation-delay-5 mt-5 flex flex-col gap-3 sm:flex-row"
+              className="animate-rise animation-delay-4 mt-7 flex flex-col gap-3 sm:flex-row"
             >
               <StoreBadge
                 type="App Store"
-                label="FootMatch bientot disponible sur App Store"
+                label="Telecharger FootMatch sur l'App Store"
+                href={APP_STORE_URL}
                 icon={<Apple size={23} />}
               />
               <StoreBadge
                 type="Google Play"
-                label="FootMatch bientot disponible sur Google Play"
+                label="Telecharger FootMatch sur Google Play"
+                href={PLAY_STORE_URL}
                 icon={<Play size={21} />}
               />
             </div>
@@ -361,12 +366,12 @@ export default function Home() {
                 Rejoins les premiers joueurs FootMatch.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-white/85">
-                FootMatch arrive bientôt sur l'App Store et Google Play.
+                FootMatch est disponible dès maintenant sur l'App Store et
+                Google Play.
               </p>
               <p className="mt-4 max-w-2xl text-base leading-7 text-white/85">
-                Inscris-toi pour être prévenu du lancement officiel, accéder à
-                l'application en avant-première et suivre les prochaines
-                évolutions de FootMatch.
+                Télécharge l'application, crée ton profil et rejoins ou lance
+                un match près de chez toi en quelques minutes.
               </p>
               <p className="mt-4 max-w-2xl text-base leading-7 text-white/85">
                 Une Version 2 est déjà en préparation avec de nouvelles
@@ -380,15 +385,15 @@ export default function Home() {
                   <Users size={22} />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-white">Liste d'attente</p>
-                  <p className="text-sm text-white/85">Ouverture prochaine</p>
+                  <p className="text-sm font-bold text-white">Disponible maintenant</p>
+                  <p className="text-sm text-white/85">iPhone et Android</p>
                 </div>
               </div>
               <div className="space-y-3">
                 {[
-                  "Disponible sur iPhone et Android",
-                  "Prévenu avant la sortie officielle",
-                  "Accès anticipé aux futures évolutions",
+                  "100% gratuit",
+                  "Trouve un match en 30 secondes",
+                  "Crée le tien en 1 minute",
                   "Version 2 déjà en préparation"
                 ].map((item) => (
                   <div
@@ -399,6 +404,20 @@ export default function Home() {
                     <span>{item}</span>
                   </div>
                 ))}
+              </div>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <StoreBadge
+                  type="App Store"
+                  label="Telecharger FootMatch sur l'App Store"
+                  href={APP_STORE_URL}
+                  icon={<Apple size={23} />}
+                />
+                <StoreBadge
+                  type="Google Play"
+                  label="Telecharger FootMatch sur Google Play"
+                  href={PLAY_STORE_URL}
+                  icon={<Play size={21} />}
+                />
               </div>
             </div>
           </div>
